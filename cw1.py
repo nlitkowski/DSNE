@@ -1,6 +1,7 @@
-#Litkowski Norbert
-#Cw.1
-#Python
+# Litkowski Norbert
+# Cw.1
+# Python
+
 
 def f(weights, inputs, m):
     x = float(0)
@@ -14,7 +15,7 @@ def f(weights, inputs, m):
 
 def and_gate():
     inputs = []
-    weights = [float(0.3),float(0.3),float(-0.5)]
+    weights = [float(0.3), float(0.3), float(-0.5)]
     m = 3
     print('\nBramka AND\n')
     x = input('Podaj wejście 1: ')
@@ -26,12 +27,12 @@ def and_gate():
     else:
         print('\nZłe wejście')
         return
-    print("\nWynik: {}".format(f(weights,inputs,m)))
+    print("\nWynik: {}".format(f(weights, inputs, m)))
 
 
 def nand_gate():
     inputs = []
-    weights = [float(-0.4),float(-0.4),float(0.6)]
+    weights = [float(-0.4), float(-0.4), float(0.6)]
     m = 3
     print('\nBramka NAND\n')
     x = input('Podaj wejście 1: ')
@@ -43,12 +44,12 @@ def nand_gate():
     else:
         print('\nZłe wejście')
         return
-    print("\nWynik: {}".format(f(weights,inputs,m)))
+    print("\nWynik: {}".format(f(weights, inputs, m)))
 
 
 def or_gate():
     inputs = []
-    weights = [float(0.3),float(0.3),float(-0.2)]
+    weights = [float(0.3), float(0.3), float(-0.2)]
     m = 3
     print('\nBramka OR\n')
     x = input('Podaj wejście 1: ')
@@ -60,12 +61,12 @@ def or_gate():
     else:
         print('\nZłe wejście')
         return
-    print("\nWynik: {}".format(f(weights,inputs,m)))
+    print("\nWynik: {}".format(f(weights, inputs, m)))
 
 
 def not_gate():
     inputs = []
-    weights = [float(-0.5),float(0.3)]
+    weights = [float(-0.5), float(0.3)]
     m = 2
     print('\nBramka NOT\n')
     x = input('Podaj wejście: ')
@@ -75,7 +76,7 @@ def not_gate():
     else:
         print('\nZłe wejście')
         return
-    print("\nWynik: {}".format(f(weights,inputs,m)))
+    print("\nWynik: {}".format(f(weights, inputs, m)))
 
 
 def main():
@@ -89,7 +90,7 @@ def main():
         try:
             x = int(x)
         except ValueError:
-            print("Złe wejście")
+            print("\nZłe wejście")
         if(x == 1):
             not_gate()
         elif(x == 2):
