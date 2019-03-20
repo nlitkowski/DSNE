@@ -14,19 +14,10 @@ def f(input, weight, m):
 
 
 def z(t):
-    if ((t % 5) + 1) < 3:
+    if (t % 5 + 1) <= 3:
         return 1.0
     else:
         return 0.0
-
-
-def w(c, t, weights, inputs):
-    zt = z(t)
-    input = inputs[((t - 1) % 5)][len(weights) - 1]
-    yt = y(weights, inputs, t)
-    for i in range(len(weights)):
-        weights[i] = (weights[i] + c * (zt - yt) * input)
-    return weights
 
 
 def iter(c, inputs):
@@ -34,20 +25,19 @@ def iter(c, inputs):
     weights[:] = [1.0] * 26
 
     t = 1
-    counter = 0
+    counter = 0.0
 
-    while(counter < 5):
-        weights = w(c, t, weights, inputs)
+    while(counter < 5.0):
         zt = z(t)
         yt = f(inputs[t % 5], weights, len(weights))
         for i in range(26):
             weights[i] = weights[i] + c * (zt - yt) * inputs[t % 5][i]
         t += 1
         if(zt == yt):
-            counter += 1
+            counter += 1.0
         else:
-            counter = 0
-    print("\nC:{}\nT: {}\n".format(c,t))
+            counter = 0.0
+    print("\nC:{}\nT: {}\n".format(c, t))
     for i in range(len(weights)):
         print("W{}: {}".format(i, weights[i]))
 
