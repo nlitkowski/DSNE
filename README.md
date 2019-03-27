@@ -1,0 +1,1 @@
+# Rozwiązania ćwiczeń - Sieci Neuronowe - UAM Wydział Matematyki i informatyki
