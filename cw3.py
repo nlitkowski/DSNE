@@ -62,49 +62,24 @@ def main():
     print("Model asocjacji (Uczenie Hebba)\n")
 
     # inicjalizuję obrazy
-    Z0 = list(range(25))
-    Z0[:] = [-1] * 25
-    Z0[6] = 1
-    Z0[7] = 1
-    Z0[8] = 1
-    Z0[11] = 1
-    Z0[13] = 1
-    Z0[16] = 1
-    Z0[17] = 1
-    Z0[18] = 1
+    a = [6, 7, 8, 11, 13, 16, 17, 18]
+    Z0 = [1 if i in a else -1 for i in range(25)]
 
-    Z1 = list(range(25))
-    Z1[:] = [-1] * 25
-    Z1[6] = 1
-    Z1[7] = 1
-    Z1[12] = 1
-    Z1[17] = 1
+    a = [6, 7, 12, 17]
+    Z1 = [1 if i in a else -1 for i in range(25)]
 
     # inicjalizuję zaburzone obrazy
-    ZP0 = list(range(25))
-    ZP0[:] = [-1] * 25
-    ZP0[1] = 1
-    ZP0[2] = 1
-    ZP0[3] = 1
-    ZP0[6] = 1
-    ZP0[8] = 1
-    ZP0[11] = 1
-    ZP0[13] = 1
-    ZP0[16] = 1
-    ZP0[17] = 1
-    ZP0[18] = 1
+    a = [1, 2, 3, 6, 8, 11, 13, 16, 17, 18]
+    ZP0 = [1 if i in a else -1 for i in range(25)]
 
-    ZP1 = list(range(25))
-    ZP1[:] = [-1] * 25
-    ZP1[2] = 1
-    ZP1[7] = 1
-    ZP1[12] = 1
-    ZP1[17] = 1
-    ZP1[22] = 1
+    a = [2, 7, 12, 17, 22]
+    ZP1 = [1 if i in a else -1 for i in range(25)]
+
+    weights = get_weights(Z0, Z1)
 
     print("Normalne obrazy\n")
-    weights = get_weights(Z0, Z1)
     iterate(Z0, Z1, weights)
+
     print("Zaburzone obrazy\n")
     iterate(ZP0, ZP1, weights)
 
