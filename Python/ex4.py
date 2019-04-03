@@ -1,5 +1,5 @@
 # Litkowski Norbert
-# Cw.3
+# Cw.4
 # Python
 
 # Gradient descent
@@ -26,13 +26,13 @@ def calculate_first_gradient(x_old, epsilon, c):
     print(f"Values: [{x_old[0], x_old[1], x_old[2]}]")
     # function we are calculating gradient for
     print("f(x, y, z) = 2x^2 + 2y^2 + z^2 - 2xy - 2yz - 2x + 3\n")
-    # assign x_old elements to variables for brevity
-    x = x_old[0]
-    y = x_old[1]
-    z = x_old[2]
+    x_new = list(x_old)  # copy x_old to x_new
     flag = True
     while(flag):
-        x_new = list(x_old)  # copy x_old to x_new
+        # assign x_old elements to variables for brevity
+        x = x_old[0]
+        y = x_old[1]
+        z = x_old[2]
         x_new[0] = x - c * (4 * x - 2 * y - 2)
         x_new[1] = y - c * (4 * y - 2 * x - 2 * z)
         x_new[2] = z - c * (2 * z - 2 * y)
@@ -52,11 +52,11 @@ def calculate_second_gradient(x_old, epsilon, c):
     print(f"Values: [{x_old[0], x_old[1]}]")
     # function we are calculating gradient for
     print("f(x, y) = 3x^4 + 4x^3 - 12x^2 + 12y^2 - 24y\n")
-    # assign x_old elements to variables for brevity
-    x = x_old[0]
-    y = x_old[1]
     flag = True
     while(flag):
+        # assign x_old elements to variables for brevity
+        x = x_old[0]
+        y = x_old[1]
         x_new = list(x_old)  # copy x_old to x_new
         x_new[0] = x - c * (12 * x ** 3 + 12 * x ** 2 - 24 * x)
         x_new[1] = y - c * (24 * y - 24)
@@ -71,11 +71,11 @@ def main():
     # Predefine epsilon and c constant
     epsilon = 0.00001
     c = 0.01
-    # Generate list of length 3 with random floats between 0 <= x < 100
-    input_first = [random.uniform(0, 10) for i in range(3)]
+    # Generate list of length 3 with random floats between -5 <= x < 5
+    input_first = [round(random.uniform(-5, 5), 2) for i in range(3)]
     calculate_first_gradient(input_first, epsilon, c)
-    # Generate list of length 2 with random floats between 0 <= x < 100
-    input_second = [random.uniform(0, 10) for i in range(2)]
+    # Generate list of length 2 with random floats between -3 <= x < 3
+    input_second = [round(random.uniform(-3, 3), 2) for i in range(2)]
     calculate_second_gradient(input_second, epsilon, c)
 
 
