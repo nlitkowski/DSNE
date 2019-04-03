@@ -2,6 +2,8 @@
 # Cw.2
 # Python
 
+# Perceptron
+
 
 def f(input, weight, m):
     x = 0.0
@@ -44,62 +46,28 @@ def iter(c, inputs):
 
 def main():
     inputs = []
-    tmp = list(range(26))
 
     # U1
-    tmp[:] = [0.0] * 26
-    tmp[6] = 1.0
-    tmp[7] = 1.0
-    tmp[12] = 1.0
-    tmp[17] = 1.0
-    tmp[22] = 1.0
-    tmp[25] = 1.0
-    inputs.append(list(tmp[:]))
+    a = [6, 7, 12, 17, 22, 25]
+    inputs.append([1.0 if i in a else 0.0 for i in range(26)])
 
     # U2
-    tmp[:] = [0.0] * 26
-    tmp[2] = 1.0
-    tmp[3] = 1.0
-    tmp[8] = 1.0
-    tmp[13] = 1.0
-    tmp[25] = 1.0
-    inputs.append(list(tmp[:]))
+    a = [2, 3, 8, 13, 25]
+    inputs.append([1.0 if i in a else 0.0 for i in range(26)])
 
     # U3
-    tmp[:] = [0.0] * 26
-    tmp[5] = 1.0
-    tmp[6] = 1.0
-    tmp[11] = 1.0
-    tmp[16] = 1.0
-    tmp[21] = 1.0
-    inputs.append(list(tmp[:]))
+    a = [5, 6, 11, 16, 21]
+    inputs.append([1.0 if i in a else 0.0 for i in range(26)])
 
     # U4
-    tmp[:] = [0.0] * 26
-    tmp[6] = 1.0
-    tmp[7] = 1.0
-    tmp[8] = 1.0
-    tmp[11] = 1.0
-    tmp[13] = 1.0
-    tmp[16] = 1.0
-    tmp[17] = 1.0
-    tmp[18] = 1.0
-    tmp[25] = 1.0
-    inputs.append(list(tmp[:]))
+    a = [6, 7, 8, 11, 13, 16, 17, 18, 25]
+    inputs.append([1.0 if i in a else 0.0 for i in range(26)])
 
     # U5
-    tmp[:] = [0.0] * 26
-    tmp[10] = 1.0
-    tmp[11] = 1.0
-    tmp[12] = 1.0
-    tmp[15] = 1.0
-    tmp[17] = 1.0
-    tmp[20] = 1.0
-    tmp[21] = 1.0
-    tmp[22] = 1.0
-    tmp[25] = 1.0
-    inputs.append(list(tmp[:]))
+    a = [10, 11, 12, 15, 17, 20, 21, 22, 25]
+    inputs.append([1.0 if i in a else 0.0 for i in range(26)])
 
+    # invoke iteration for different learning factors
     for c in [0.01, 0.1, 1.0]:
         iter(c, inputs)
 

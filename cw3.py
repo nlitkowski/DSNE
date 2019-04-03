@@ -2,6 +2,8 @@
 # Cw.3
 # Python
 
+# Hebbian learning
+
 
 def sgn(M):
     for i in range(len(M)):
@@ -68,7 +70,7 @@ def main():
     a = [6, 7, 12, 17]
     Z1 = [1 if i in a else -1 for i in range(25)]
 
-    # inicjalizuję zaburzone obrazy
+    # Initialize distorted images
     a = [1, 2, 3, 6, 8, 11, 13, 16, 17, 18]
     ZP0 = [1 if i in a else -1 for i in range(25)]
 
@@ -77,10 +79,10 @@ def main():
 
     weights = get_weights(Z0, Z1)
 
-    print("Normalne obrazy\n")
+    print("Normal images\n")
     iterate(Z0, Z1, weights)
 
-    print("Zaburzone obrazy\n")
+    print("Distorted images\n")
     iterate(ZP0, ZP1, weights)
 
 
