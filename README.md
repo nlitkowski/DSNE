@@ -1,6 +1,7 @@
 ## Neural networks - Adam Mickiewicz University - Faculty of Mathematics and Computer Science
 ### Exercise solutions
 
-* [McCulloch-Pitts neuron model](https://gitlab.com/nlitkowski/dsne/blob/master/Python/cw1.py) 
-* [Perceptron](https://gitlab.com/nlitkowski/dsne/blob/master/Python/cw2.py)
-* [Hebbian learning](https://gitlab.com/nlitkowski/dsne/blob/master/Python/cw3.py)
+* [McCulloch-Pitts neuron model](Python/ex1.py) 
+* [Perceptron](Python/ex2.py)
+* [Hebbian learning](Python/ex3.py)
+* [Gradient descent](Python/ex4.py)
