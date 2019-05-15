@@ -5,12 +5,18 @@
 # Backpropagation
 
 import math
+import numpy as np
 
 def check_epsilon(s_new, s_old, w_new, w_old, eps):
-    return max(abs(s_new - s_old), abs(w_new - w_old)) < eps      
+    ret = False
+    for i in range(2):
+        for j in range(3):
+            if max(abs(s_new[i] - s_old[i]), abs(w_new[i][j] - w_old[i][j])) < eps:
+                ret = True
+    return ret
 
 def f(u, beta):
-    return 1/(1 + math.e ** (-beta * u))
+    return 1/(1 + math.pow(math.e, (-beta * u)))
 
 def f_prim(u, beta):
     val = f(u, beta)
@@ -26,8 +32,7 @@ def de_s(s, x, y, z, i, beta):
                 s[1] * x[p][1] +
                 s[2] * x[p][2],
                 beta
-            ) * 
-            x[p][i]
+            ) * x[p][i]
         )
     return sum
 
@@ -41,27 +46,26 @@ def de_w(s, x, y, z, i, j, beta, u, w):
                 s[1] * x[p][1] +
                 s[2] * x[p][2],
                 beta
-            ) * 
-            s[i] * 
+            ) * s[i] * 
             f_prim(
                 w[i][0] * u[p][0] +
                 w[i][1] * u[p][1] +
                 w[i][2] * u[p][2],
                 beta
-            ) * 
-            u[p][j]
+            ) * u[p][j]
         )
+    return sum
 
 def get_s_new(s_old, c, de_s):
     s_new = []
-    for i in range(len(s_old)):
+    for i in range(3):
         s_new.append(s_old[i] - c * de_s[i])
     return s_new
 
 def get_w_new(w_old, c, de_w):
     w_new = [[],[]]
-    for i in range(len(w_old)):
-        for j in range(len(w_old[i])):
+    for i in range(2):
+        for j in range(3):
             w_new[i].append(w_old[i][j] - c * de_w[i][j])
     return w_new
 
@@ -113,9 +117,9 @@ def iterate(U, W, S_old, c, beta):
     s_new = get_s_new(S, c, DE_s)
     w_new = get_w_new(W, c, DE_w)
 
-    return s_new, w_new
+    return s_new, w_new, y
 
-def main():
+def main(c, eps, beta):
     U = [
         [0, 0, 1],
         [1, 0, 1],
@@ -127,15 +131,27 @@ def main():
         [0, 1, 2]
     ]
     S = [0, 1, 2]
-    Beta = 1.0
-    Eps = 0.000001
-    c = 0.1
-    s_new, w_new = iterate(U, W, S, c, Beta)
-    while(not check_epsilon(
-        s_new, S, w_new, W, Eps )):
+    Beta = beta
+    Eps = eps
+    c = c
+    s_new, w_new, y = iterate(U, W, S, c, Beta)
+    while(not check_epsilon(s_new, S, w_new, W, Eps )):
         S = s_new
         W = w_new
-        s_new, w_new = iterate(U, W, S, c, Beta)
+        s_new, w_new, y = iterate(U, W, S, c, Beta)
+
+    print(f"C: {c}, Epsilon: {eps}, Beta: {beta}\n")
+    print("\nW\n")
+    for w in w_new:
+        print(w)
+    print("\nS\n")
+    for s in s_new:
+        print(s)
+    print("\nY\n")
+    print(y)
 
 if __name__ == "__main__":
-    main()
+    eps = 0.0001
+    for c in np.arange(0.1, 1.1, 0.1):
+        for beta in np.arange(1.0, 4.0, 1.0):
+            main(c, eps, beta)
