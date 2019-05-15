@@ -139,7 +139,7 @@ def main(c, eps, beta):
         S = s_new
         W = w_new
         s_new, w_new, y = iterate(U, W, S, c, Beta)
-
+    print("Propagacja wsteczna")
     print(f"C: {c}, Epsilon: {eps}, Beta: {beta}\n")
     print("\nW\n")
     for w in w_new:
