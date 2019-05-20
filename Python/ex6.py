@@ -22,6 +22,13 @@ def get_sum_decoder(wp, vec_y, bp):
         sum += (wp[i] * vec_y[i]) + bp
     return sum
 
+def get_e(vec_x, vec_xp):
+    sum = 0.0
+    for a in range(3):
+        for k in range(25):
+            sum += math.pow((vec_xp[a][k] - vec_x[a][k]), 2)
+    return sum/2
+
 def main():
     # inicjalizacja warunków początkowych
     beta = 1.0
@@ -65,6 +72,8 @@ def main():
             xp.append([f(get_sum_decoder(wp[k], y[a], bp[k]), beta)])
             f1 = lambda x: 0 if x < 0 else 1
             xpp[a].append(f1(xp[a][k]))
+
+    # minimalizacja E metodą gradientu
 
 if __name__ == "__main__":
     main()
