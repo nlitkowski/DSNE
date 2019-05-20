@@ -27,8 +27,7 @@ def calculate_first_gradient(x_old, epsilon, c):
     # function we are calculating gradient for
     print("f(x, y, z) = 2x^2 + 2y^2 + z^2 - 2xy - 2yz - 2x + 3\n")
     x_new = list(x_old)  # copy x_old to x_new
-    flag = True
-    while(flag):
+    while(not check_epsilon(x_new, x_old, epsilon)):
         # assign x_old elements to variables for brevity
         x = x_old[0]
         y = x_old[1]
@@ -36,7 +35,6 @@ def calculate_first_gradient(x_old, epsilon, c):
         x_new[0] = x - c * (4 * x - 2 * y - 2)
         x_new[1] = y - c * (4 * y - 2 * x - 2 * z)
         x_new[2] = z - c * (2 * z - 2 * y)
-        flag = check_epsilon(x_new, x_old, epsilon)
         x_old = list(x_new)  # copy x_new to x_old
     print(f"Point({x_new[0]}, {x_new[1]}, {x_new[2]})")
     print(f"Value: {first_function(x_new[0], x_new[1], x_new[2])}\n")
@@ -52,15 +50,13 @@ def calculate_second_gradient(x_old, epsilon, c):
     print(f"Values: [{x_old[0], x_old[1]}]")
     # function we are calculating gradient for
     print("f(x, y) = 3x^4 + 4x^3 - 12x^2 + 12y^2 - 24y\n")
-    flag = True
-    while(flag):
+    while(not check_epsilon(x_new, x_old, epsilon))
         # assign x_old elements to variables for brevity
         x = x_old[0]
         y = x_old[1]
         x_new = list(x_old)  # copy x_old to x_new
         x_new[0] = x - c * (12 * x ** 3 + 12 * x ** 2 - 24 * x)
         x_new[1] = y - c * (24 * y - 24)
-        flag = check_epsilon(x_new, x_old, epsilon)
         x_old = list(x_new)  # copy x_new to x_old
     print(f"Point({x_new[0]}, {x_new[1]})")
     print(f"Value: {second_function(x_new[0], x_new[1])}\n")
